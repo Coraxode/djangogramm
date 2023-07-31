@@ -1,0 +1,29 @@
+{% extends 'newsfeed/all_posts.html' %}
+
+{% block title %}
+    Фото {{ posts.0.author_username }}
+{% endblock %}
+
+{% block extra_content %}
+    <label id="author_username">{{ posts.0.author_username }}</label>
+    <div id="user_info">
+        <img src='{{ posts.0.author_profile_photo.url }}' width="175" height="175">
+
+        <label style="font-weight: bold;">Підписників: {{ subscribers_count }}</label>
+
+        {% if posts.0.author_username == current_username %}
+            <button class="pretty-button" onclick="window.location.href = '/user/settings/{{ posts.0.author_username }}';">Налаштування</button>
+        {% elif current_username and posts.0.author_username != current_username %}
+            {% if is_subscribed %}
+                <button class="pretty-button" id="unsubscribe" onclick="window.location.href = '/subscribe/?{{ current_user_id }}_{{ posts.0.author_id }}';">Відписатись</button>
+            {% else %}
+                <button class="pretty-button" id="subscribe" onclick="window.location.href = '/subscribe/?{{ current_user_id }}_{{ posts.0.author_id }}';">Слідкувати</button>
+            {% endif %}
+        {% endif %}
+
+        <br><label>{{ posts.0.author_first_name }}</label>
+        <label>{{ posts.0.author_last_name }}</label><br><br>
+        <label style="word-wrap: break-word;">{{ posts.0.author_biography }}</label>
+    </div>
+    <hr>
+{% endblock %}

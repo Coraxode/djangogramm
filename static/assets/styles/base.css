@@ -1,0 +1,371 @@
+/* ### base styles ### */
+
+body, input, textarea, select {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+}
+
+body {
+    margin: 0px;
+}
+
+#header-newsfeed {
+    height: 50px;
+    background-color: #212529;
+}
+
+#djangogramm-label {
+    text-decoration: none;
+    color: white;
+    font-size: 23px;
+    font-weight: 550;
+    position: relative;
+    top: 7px;
+    left: 18%;
+}
+
+.pretty-button {
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 7px;
+    height: 26px;
+    margin-left: auto;
+    border: 1px solid black;
+    background-color: #D6D6D6;
+    transition: background-color 0.3s;
+}
+
+.pretty-button:hover {
+    background-color: #7F7F7F;
+}
+
+.button-reg, .username-in-header {
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 5px 20px;
+    position: absolute;
+    cursor: pointer;
+}
+
+.button-reg {
+    background-color: #707070;
+    font-size: 1.1em;
+    top: 8px;
+    right: 20px;
+    transition: background-color 0.3s;
+}
+
+.username-in-header {
+    background-color: transparent;
+    font-weight: 450;
+    font-size: 1.3em;
+    top: 5px;
+    right: 115px;
+    transition: transform 0.3s;
+}
+
+.username-in-header:hover {
+    transform: scale(1.05);
+}
+
+.button-reg:hover {
+    background-color: #4F4F4F;
+}
+
+.content-box-account {
+    margin: 20px auto;
+    padding: 5px 15px;
+    width: 700px;
+    height: 550px;
+    border-radius: 8px/7px;
+    background-color: #EBEBEB;
+    box-shadow: 1px 2px 5px rgba(0,0,0,.31);
+    border: solid 2px #cbc9c9;
+}
+
+.content-box-account h1 {
+    text-align: center;
+}
+
+/* ### account styles ### */
+
+.signup {
+    display: flex;
+    flex-direction: row;
+}
+
+.signup form {
+    width: 350px;
+}
+
+.signup ul {
+    list-style-type: none;
+    display: flex;
+    padding-inline-start: 0px;
+}
+
+.signup ul li {
+    margin: -5px 5px;
+}
+
+.socialaccount_ballot {
+    margin-left: 25px;
+}
+
+/* ### newsfeed styles ### */
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(to right, black, grey, black);
+    min-height: 100vh;
+}
+
+.photos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 515px;
+    padding: 0px 20px;
+    background-color: white;
+    box-shadow: 0px 0px 19px -2px #000000;
+    min-height: 100vh;
+}
+
+.page-status {
+    display: flex;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    width: 475px;
+    height: 30px;
+    padding: 0px;
+}
+
+.page-status h2 {
+    margin: 0px;
+    font-weight: 600;
+}
+
+.page-status button {
+    margin-left: auto;
+    margin-top: auto;
+}
+
+.tags-container {
+    display: flex;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: #4169E1;
+}
+
+.tags-container p {
+    margin: 0px;
+    padding: 0px;
+}
+
+.change-tags-container {
+    display: flex;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: #4169E1;
+    width: 475px
+}
+
+.change-tags-container button {
+    position: relative;
+    bottom: 5px;
+    left: 23px;
+}
+
+.change-tags-container input {
+    position: relative;
+    bottom: 5px;
+}
+
+.author {
+    display: flex;
+    margin: 0px 0px 10px 5px;
+    height: 35px;
+    text-decoration: none;
+    font-weight: 550;
+    color: black;
+}
+
+.author img {
+    border-radius: 20px;
+    float: left
+}
+
+.author label {
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+.author a {
+    transition: transform 0.3s;
+}
+
+.author a:hover {
+    transform: scale(1.05);
+}
+
+.like {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 35px;
+    text-decoration: none;
+    font-weight: 550;
+    color: black;
+}
+
+.like button {
+    background-color: transparent;
+    border: none;
+    margin-top: 2px;
+    transition: transform 0.2s;
+}
+
+.like p {
+    font-size: 18px;
+    margin-left: 10px;
+}
+
+.like img:hover {
+    transform: scale(1.2);
+}
+
+.link-reg {
+    text-decoration: none;
+    color: white;
+}
+
+.extra-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 475px;
+    background-color: #F2F2F2;
+    padding: 0px 25px;
+    margin-top: 5px;
+    border-radius: 10px;
+}
+
+#author_username {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+#user_info {
+    width: 475px;
+}
+
+#user_info img {
+    float: left;
+    margin-right: 15px;
+    border: solid 2px black;
+}
+
+#user_info button {
+    float: right;
+}
+
+#subscribe {
+    background-color: red;
+}
+
+#subscribe:hover {
+    background-color: #C60000;
+}
+
+.slider {
+    white-space: nowrap;
+    overflow: auto;
+    overflow-x: hidden;
+    padding: 0px;
+    width: 475px;
+    box-sizing: border-box;
+    font-size: 0
+}
+
+.slider a {
+    position: relative;
+}
+
+.slider img {
+    padding: 0px;
+    margin: 0px;
+    white-space: nowrap;
+}
+
+.multiple-photo-container {
+    height: 475px;
+}
+
+.multiple-photo-container button {
+    position: relative;
+    font-size: 20px;
+    bottom: 260px;
+    height: 50px;
+    width: 30px;
+    border: none;
+    z-index: 999;
+    background-color: #3F3F3F;
+    opacity: 0.3;
+    transition: opacity 0.3s;
+}
+
+.multiple-photo-container:hover button {
+    opacity: 0.6;
+    border: 2px solid black;
+}
+
+.multiple-photo-container button:hover {
+    opacity: 1;
+}
+
+.photo-description {
+    width: 475px;
+    word-wrap: break-word;
+    margin-top: 5px;
+}
+
+
+/* ### settings styles ### */
+
+#user_username {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.content-box-settings {
+    margin: 20px auto;
+    padding: 5px 15px;
+    width: 1000px;
+    height: 500px;
+    border-radius: 8px/7px;
+    background-color: #EBEBEB;
+    box-shadow: 1px 2px 5px rgba(0,0,0,.31);
+    border: solid 2px #cbc9c9;
+}
+
+.content-box-settings img {
+    float: left;
+    border: solid 2px black;
+}
+
+.content-box-settings input[type="file"] {
+    margin-top: 5px;
+}
+
+.content-box-settings input[type="submit"] {
+    position: relative;
+    top: 18px;
+}

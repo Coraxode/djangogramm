@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Завантаження фото
+{% endblock %}
+
+{% block content %}
+<div class="content-box-account">
+  <form action="/upload/" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <label for="photo">Фотографія:</label><br>
+      <input type="file" accept="image/*" id="photo" name="photo" multiple required><br><br>
+
+      <label for="description">Опис:</label><br>
+      <textarea id="description" name="description" rows="3" cols="66"></textarea><br><br>
+
+      <label for="tags">Теги:</label>
+      <input id="tags" name="tags" size="30" value=""><br><br>
+
+      <button type="submit">Завантажити</button>
+  </form>
+</div>
+{% endblock %}

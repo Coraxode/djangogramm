@@ -1,0 +1,7 @@
+.ebextensions/
+.elasticbeanstalk/
+node_modules/
+__pycache__/
+.ebextensions/
+.elasticbeanstalk/
+.env

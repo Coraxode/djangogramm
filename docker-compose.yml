@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  djangogramm:
+    build:
+      .
+    ports:
+      - "8000:8000"
+    command: 
+      python manage.py runserver 0.0.0.0:8000
+    environment:
+      - DEBUG=${DEBUG}
+      - SECRET_KEY=${SECRET_KEY}
+      - ALLOWED_HOSTS=${ALLOWED_HOSTS}
+      - USE_WEB_STORAGE=${USE_WEB_STORAGE}
+      - EMAIL_HOST_USER=${EMAIL_HOST_USER}
+      - EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD}

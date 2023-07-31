@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load account socialaccount %}
+
+{% block title %}
+Реєстрація
+{% endblock %}
+
+{% block content %}
+<div class="content-box-account">
+    <h1 style="text-align: center;">Реєстрація</h1>
+    <hr>
+
+    <div class="signup">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <button class="pretty-button" type="submit">Реєстрація</button>
+        </form>
+
+        {% get_providers as socialaccount_providers %}
+        <div class="socialaccount_ballot">
+            <p>Або за допомогою сторонніх сервісів:</p>
+            <ul class="socialaccount_providers">
+                {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+            </ul>
+        </div>
+        {% include "socialaccount/snippets/login_extra.html" %}
+
+        <script>
+            $('.google').text('').append('<img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" width="40" height="40">');
+            $('.github').text('').append('<img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" width="40" height="40">');
+        </script>
+    </div>
+
+    <br><br><p style="display: inline;">Вже маєте акаунт?</p>
+    <button class="pretty-button" style="margin-left: 10px;" onclick="window.location.href = '{% url 'account_login' %}';">Вхід</button>
+</div>
+{% endblock %}

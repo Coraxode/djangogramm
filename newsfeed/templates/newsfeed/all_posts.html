@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Головна
+{% endblock %}
+
+{% block content %}
+<div class="photos">
+    <div class="extra-content">
+        {% block extra_content %}{% endblock %}
+    </div>
+
+    {% if user.is_authenticated %}
+        <div class="page-status">
+                {% if view_style == 'all_posts' %}
+                    <h2>Всі публікації</h2>
+                    <button class="pretty-button" onclick="window.location.href = '/';">Моя стрічка новин</button>
+                {% elif view_style == 'newsfeed' %}
+                    <h2>Моя стрічка новин</h2>
+                    <button class="pretty-button" onclick="window.location.href = '/all_posts/';">Всі публікації</button>
+                {% endif %}
+        </div>
+    {% endif %}
+
+    {% if posts.0.post_id %}
+        {% for post in posts %}
+            <div class="post">
+                <div class="author">
+                    <a href="/user/{{ post.author_username }}" class="author">
+                        <img src='{{ post.author_profile_photo.url }}' width="35" height="35" >
+                        <label>{{post.author_username}}</label>
+                    </a>
+                </div>
+                <div>
+                    {% if post.number_of_photos == 1 %}
+                        {% for photo in post.photos %}
+                            <img src="{{ photo.url }}" width="475" height="475"/>
+                        {% endfor %}
+                    {% else %}
+                        <div class="multiple-photo-container">
+                            <div class='slider'>
+                                <a id='photos_scroll_{{ post.post_id }}'>
+                                    {% for photo in post.photos %}
+                                        <img src="{{ photo.url }}" width="475" height="475"/>
+                                    {% endfor %}
+                                </a>
+                            </div>
+
+                            <button style="border-top-right-radius: 15px; border-bottom-right-radius: 15px;" onclick="left({{ post.post_id }})"><</button>
+                            <button style="border-top-left-radius: 15px; border-bottom-left-radius: 15px; left: 411px;" onclick="right({{ post.post_id }})">></button>
+                        </div>
+                    {% endif %}
+
+                    {% if post.description != "" %}
+                        <div class="photo-description">{{ post.description }}</div>
+                    {% endif %}
+
+                    <div class="tags-container" id="div_tags_{{ post.post_id }}">
+                        {% if post.tags != '#' %}
+                            <p>{{ post.tags }}</p>
+                        {% endif %}
+                        {% if post.author_username == current_username %}
+                            <button class="pretty-button" onclick="toggleVisibility({{ post.post_id }})">Додати теги</button>
+                        {% endif %}
+                    </div>
+
+                    <div class="change-tags-container" style="display: none;" id="div_change_tags_{{ post.post_id }}">
+                        {% if post.author_username == current_username %}
+                            <form method="post" action="{% url 'change_tags' %}" style="height: 26px; width: 475px;">
+                                {% csrf_token %}
+                                <input type="text" id="tags" name="tags" size="42" style="height: 26px;" value="{{ post.tags }}">
+                                <input name="newsfeed_id" value="{{ post.post_id }}" style="display: none;">
+                                <button class="pretty-button" onclick="toggleVisibility({{ post.post_id }})" type="submit">Зберегти</button>
+                            </form>
+                        {% endif %}
+                    </div>
+
+                    <div class="like">
+                        {% if current_user_id %}
+                            <form id="like-form_{{ post.post_id }}">
+                                {% csrf_token %}
+                                <input name="like_info" value="{{ post.post_id }}~{{ current_user_id }}" style="display: none;">
+                                <input name="next_url" value="{{ request.path }}" style="display: none;">
+
+                                <button type="button" onclick="like({% url 'like_photo' %}, {{ post.post_id }})">
+                                    {% if post.is_liked_by_current_user == True %}
+                                        <img src="https://djangogramm-bucket-1.s3.eu-central-1.amazonaws.com/default_photos/liked.png" width="30" height="30">
+                                    {% else %}
+                                        <img src="https://djangogramm-bucket-1.s3.eu-central-1.amazonaws.com/default_photos/like.png" width="30" height="30">
+                                    {% endif %}
+                                </button>
+                            </form>
+
+                            <p id="count-form_{{ post.post_id }}">{{ post.likes }}</p>
+                        {% else %}
+                            <a href="{% url 'account_login' %}"><img src="https://djangogramm-bucket-1.s3.eu-central-1.amazonaws.com/default_photos/like.png" width="30" height="30"></a>
+                            <p id="un-count-form_{{ post.post_id }}">{{ post.likes }}</p>
+                        {% endif %}
+                    </div>
+                    <hr>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+    {% endif %}
+</div>
+{% endblock %}
