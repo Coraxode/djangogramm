@@ -34,6 +34,6 @@ class UserInfo(models.Model):
 
     def __str__(self):
         try:
-            return f"Info about {User.objects.filter(id=self.id)[0].username}"
+            return f"Info about {User.objects.get(id=self.id).username}"
         except IndexError:
             return "can't find user"

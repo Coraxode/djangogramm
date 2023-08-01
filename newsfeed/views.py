@@ -6,6 +6,10 @@ from django.contrib.auth.models import User
 
 
 def index(request):
+    """
+    View function to display the user's newsfeed based on their subscriptions.
+    If the user is not authenticated, they are redirected to the 'all_posts' page.
+    """
     if not (user := request.user).is_authenticated:
         return redirect('/all_posts/')
     try:
@@ -259,6 +263,10 @@ def user_profile(request, username):
 
 
 def subscribe(request):
+    """
+    View function to handle user subscription.
+    Extracts the user IDs from the request URL and subscribes/unsubscribes the user to/from another user.
+    """
     user_id, user_to_subscribe_id = request.get_full_path().split('?')[1].split('_')
     user, user_to_subscribe = User.objects.filter(id=user_id)[0], User.objects.filter(id=user_to_subscribe_id)[0]
 
