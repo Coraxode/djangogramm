@@ -1,5 +1,5 @@
 # DjangoGramm
-***
+
 This is a Django-based application that allows users to create posts, follow other users, like posts, and view personalized newsfeeds based on their subscriptions.
 
 __Usage__
